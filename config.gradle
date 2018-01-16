@@ -1,0 +1,44 @@
+ext {
+    android = [
+            compileSdkVersion: 26,
+            applicationId    : "com.jino.jgank",
+            minSdkVersion    : 16,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    supportVersion = "26.1.0"
+    constraintlayoutVersion = '1.0.2'
+    junitVersion = '4.12'
+    runnerVersion = '1.0.1'
+    espressoVersion = '3.0.1'
+    butterknifeVersion = '8.8.1'
+    rxjavaVersion = '2.1.8'
+    rxAndroidVersion = '2.0.1'
+    rxcacheVersion = '1.8.3-2.x'
+    rxcacheJolyglotGsonVersion = '0.0.4'
+    rxlifecycleVersion = '2.2.1'
+    fragmentationVersion = '1.2.4'
+    daggerVersion = '2.14.1'
+
+    mDependencies = [
+            "appcompatV7"         : "com.android.support:appcompat-v7:$supportVersion",
+            "recyclerview"        : "com.android.support:recyclerview-v7:$supportVersion",
+            "design"              : "com.android.support:design:$supportVersion",
+            "constraintlayout"    : "com.android.support.constraint:constraint-layout:$constraintlayoutVersion",
+            "junit"               : "junit:junit:$junitVersion",
+            "runner"              : "com.android.support.test:runner:$runnerVersion",
+            "espressoCore"        : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+            "butterknife"         : "com.jakewharton:butterknife:$butterknifeVersion",
+            "butterknifeCompiler" : "com.jakewharton:butterknife-compiler:$butterknifeVersion",
+            "rxjava"              : "io.reactivex.rxjava2:rxjava:$rxjavaVersion",
+            "rxandroid"           : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            "rxcache"             : "com.github.VictorAlbertos.RxCache:runtime:$rxcacheVersion",
+            "rxcacheJolyglotGson" : "com.github.VictorAlbertos.Jolyglot:gson:$rxcacheJolyglotGsonVersion",
+            "rxlifecycleComponent": "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycleVersion",
+            "fragmentation"       : "me.yokeyword:fragmentation-core:$fragmentationVersion",
+            "dagger"             : "com.google.dagger:dagger:$daggerVersion",
+            "daggerCompiler"      : "com.google.dagger:dagger-compiler:$daggerVersion"
+    ]
+}

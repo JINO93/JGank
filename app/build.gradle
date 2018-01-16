@@ -1,0 +1,33 @@
+apply plugin: 'com.android.application'
+def cfg = rootProject.ext.android
+def depend = rootProject.ext.mDependencies
+android {
+    compileSdkVersion cfg.compileSdkVersion
+    defaultConfig {
+        applicationId cfg.applicationId
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':baselibrary')
+
+    //android support
+//    implementation depend.appcompatV7
+    implementation depend.constraintlayout
+    //test
+    testImplementation depend.junit
+    androidTestImplementation depend.runner
+    androidTestImplementation depend.espressoCore
+}
