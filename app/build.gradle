@@ -20,11 +20,10 @@ android {
 }
 
 dependencies {
-//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':baselibrary')
-
     //android support
-//    implementation depend.appcompatV7
+    //    implementation depend.appcompatV7
     implementation depend.constraintlayout
     //test
     testImplementation depend.junit

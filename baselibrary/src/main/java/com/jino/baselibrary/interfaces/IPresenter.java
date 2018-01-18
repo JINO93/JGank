@@ -16,7 +16,7 @@ public interface IPresenter {
 
     void onStop();
 
-    void onDistach();
+    void onDetach();
 
     void onDestroy();
 }

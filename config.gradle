@@ -21,6 +21,7 @@ ext {
     rxlifecycleVersion = '2.2.1'
     fragmentationVersion = '1.2.4'
     daggerVersion = '2.14.1'
+    glideVersion = '4.5.0'
 
     mDependencies = [
             "appcompatV7"         : "com.android.support:appcompat-v7:$supportVersion",
@@ -37,8 +38,11 @@ ext {
             "rxcache"             : "com.github.VictorAlbertos.RxCache:runtime:$rxcacheVersion",
             "rxcacheJolyglotGson" : "com.github.VictorAlbertos.Jolyglot:gson:$rxcacheJolyglotGsonVersion",
             "rxlifecycleComponent": "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycleVersion",
-            "fragmentation"       : "me.yokeyword:fragmentation-core:$fragmentationVersion",
-            "dagger"             : "com.google.dagger:dagger:$daggerVersion",
-            "daggerCompiler"      : "com.google.dagger:dagger-compiler:$daggerVersion"
+            "fragmentation"       : "me.yokeyword:fragmentation:$fragmentationVersion",
+            "fragmentationCore"       : "me.yokeyword:fragmentation-core:$fragmentationVersion",
+            "dagger"              : "com.google.dagger:dagger:$daggerVersion",
+            "daggerCompiler"      : "com.google.dagger:dagger-compiler:$daggerVersion",
+            "glide"               : "com.github.bumptech.glide:glide:$glideVersion",
+            "glideCompiler"       : "com.github.bumptech.glide:compiler:$glideVersion"
     ]
 }

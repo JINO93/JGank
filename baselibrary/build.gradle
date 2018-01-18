@@ -26,21 +26,19 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-
+    api fileTree(include: ['*.jar'], dir: 'libs')
     api depend.appcompatV7
     api depend.butterknife
     annotationProcessor depend.butterknifeCompiler
     api depend.dagger
     annotationProcessor depend.daggerCompiler
-
     api depend.rxjava
     api depend.rxandroid
     api depend.rxcache
     api depend.rxcacheJolyglotGson
     api depend.rxlifecycleComponent
     api depend.fragmentation
-
+//    api depend.fragmentationCore
     //test
     testImplementation depend.junit
     androidTestImplementation depend.runner

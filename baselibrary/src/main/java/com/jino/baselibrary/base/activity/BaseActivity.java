@@ -14,12 +14,14 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportActivity;
 
 /**
+ * Acitvity基类
  * Created by JINO on 2018/1/14.
  */
 
-public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActivity implements IActivity, IView {
+public abstract class BaseActivity<P extends IPresenter> extends SupportActivity implements IActivity, IView {
 
     private Unbinder unbinder;
 
