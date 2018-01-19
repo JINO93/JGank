@@ -12,9 +12,20 @@ public class ConditionUtils {
      * @param expression 表达式
      * @param errorMsg 错误信息
      */
-    public static void checkIntParams(boolean expression,String errorMsg){
+    public static void checkParams(boolean expression, String errorMsg){
         if(!expression){
             throw new IllegalArgumentException(errorMsg);
+        }
+    }
+
+    /**
+     * 检查对象是否为空
+     * @param obj 检查对象
+     * @param errorMsg 错误信息
+     */
+    public static void checkNotNull(Object obj,String errorMsg){
+        if(obj == null){
+            throw new NullPointerException(errorMsg);
         }
     }
 }

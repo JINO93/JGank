@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import com.jino.baselibrary.interfaces.IPresenter;
 import com.jino.baselibrary.interfaces.IView;
 import com.jino.baselibrary.utils.ConditionUtils;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import javax.inject.Inject;
 
@@ -31,7 +30,7 @@ public abstract class BaseActivity<P extends IPresenter> extends SupportActivity
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        ConditionUtils.checkIntParams(layoutId() <= 0, "please set the correct layout id");
+        ConditionUtils.checkParams(layoutId() <= 0, "please set the correct layout id");
         setContentView(layoutId());
         unbinder = ButterKnife.bind(this);
         initView();

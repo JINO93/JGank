@@ -22,27 +22,33 @@ ext {
     fragmentationVersion = '1.2.4'
     daggerVersion = '2.14.1'
     glideVersion = '4.5.0'
+    retrofitVersion = '2.3.0'
+    okhttpVersion = '3.9.1'
 
     mDependencies = [
-            "appcompatV7"         : "com.android.support:appcompat-v7:$supportVersion",
-            "recyclerview"        : "com.android.support:recyclerview-v7:$supportVersion",
-            "design"              : "com.android.support:design:$supportVersion",
-            "constraintlayout"    : "com.android.support.constraint:constraint-layout:$constraintlayoutVersion",
-            "junit"               : "junit:junit:$junitVersion",
-            "runner"              : "com.android.support.test:runner:$runnerVersion",
-            "espressoCore"        : "com.android.support.test.espresso:espresso-core:$espressoVersion",
-            "butterknife"         : "com.jakewharton:butterknife:$butterknifeVersion",
-            "butterknifeCompiler" : "com.jakewharton:butterknife-compiler:$butterknifeVersion",
-            "rxjava"              : "io.reactivex.rxjava2:rxjava:$rxjavaVersion",
-            "rxandroid"           : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
-            "rxcache"             : "com.github.VictorAlbertos.RxCache:runtime:$rxcacheVersion",
-            "rxcacheJolyglotGson" : "com.github.VictorAlbertos.Jolyglot:gson:$rxcacheJolyglotGsonVersion",
-            "rxlifecycleComponent": "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycleVersion",
-            "fragmentation"       : "me.yokeyword:fragmentation:$fragmentationVersion",
-            "fragmentationCore"       : "me.yokeyword:fragmentation-core:$fragmentationVersion",
-            "dagger"              : "com.google.dagger:dagger:$daggerVersion",
-            "daggerCompiler"      : "com.google.dagger:dagger-compiler:$daggerVersion",
-            "glide"               : "com.github.bumptech.glide:glide:$glideVersion",
-            "glideCompiler"       : "com.github.bumptech.glide:compiler:$glideVersion"
+            "appcompatV7"          : "com.android.support:appcompat-v7:$supportVersion",
+            "recyclerview"         : "com.android.support:recyclerview-v7:$supportVersion",
+            "design"               : "com.android.support:design:$supportVersion",
+            "constraintlayout"     : "com.android.support.constraint:constraint-layout:$constraintlayoutVersion",
+            "junit"                : "junit:junit:$junitVersion",
+            "runner"               : "com.android.support.test:runner:$runnerVersion",
+            "espressoCore"         : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+            "butterknife"          : "com.jakewharton:butterknife:$butterknifeVersion",
+            "butterknifeCompiler"  : "com.jakewharton:butterknife-compiler:$butterknifeVersion",
+            "rxjava"               : "io.reactivex.rxjava2:rxjava:$rxjavaVersion",
+            "rxandroid"            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+            "rxcache"              : "com.github.VictorAlbertos.RxCache:runtime:$rxcacheVersion",
+            "rxcacheJolyglotGson"  : "com.github.VictorAlbertos.Jolyglot:gson:$rxcacheJolyglotGsonVersion",
+            "rxlifecycleComponent" : "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycleVersion",
+            "fragmentation"        : "me.yokeyword:fragmentation:$fragmentationVersion",
+            "fragmentationCore"    : "me.yokeyword:fragmentation-core:$fragmentationVersion",
+            "dagger"               : "com.google.dagger:dagger:$daggerVersion",
+            "daggerCompiler"       : "com.google.dagger:dagger-compiler:$daggerVersion",
+            "glide"                : "com.github.bumptech.glide:glide:$glideVersion",
+            "glideCompiler"        : "com.github.bumptech.glide:compiler:$glideVersion",
+            "retrofit"             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            "retrofitConverterGson": "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            "retrofitAdapter"      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            "okhttp"               : "com.squareup.okhttp3:okhttp:$okhttpVersion",
     ]
 }

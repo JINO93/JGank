@@ -39,6 +39,11 @@ dependencies {
     api depend.rxlifecycleComponent
     api depend.fragmentation
 //    api depend.fragmentationCore
+
+    api depend.retrofit
+    api depend.retrofitConverterGson
+    api depend.retrofitAdapter
+    api depend.okhttp
     //test
     testImplementation depend.junit
     androidTestImplementation depend.runner

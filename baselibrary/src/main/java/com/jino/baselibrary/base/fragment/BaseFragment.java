@@ -30,7 +30,7 @@ public abstract class BaseFragment extends SupportFragment implements IFragment 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ConditionUtils.checkIntParams(getLayoutId() > 0, "layout id is not a vaild value.");
+        ConditionUtils.checkParams(getLayoutId() > 0, "layout id is not a vaild value.");
         View view = inflater.inflate(getLayoutId(), container, false);
         unBinder = ButterKnife.bind(this, view);
         return view;
