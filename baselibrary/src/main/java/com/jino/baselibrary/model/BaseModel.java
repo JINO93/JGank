@@ -1,9 +1,9 @@
 package com.jino.baselibrary.model;
 
+import com.jino.baselibrary.RequestManager;
 import com.jino.baselibrary.utils.ConditionUtils;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -17,9 +17,10 @@ import io.reactivex.schedulers.Schedulers;
 public abstract class BaseModel<T, PARAMS> implements IModel<T, PARAMS> {
 
     private CompositeDisposable disposables;
+    protected RequestManager mRequestManager;
 
-
-    public BaseModel() {
+    public BaseModel(RequestManager requestManager) {
+        mRequestManager = requestManager;
         disposables = new CompositeDisposable();
     }
 

@@ -24,7 +24,13 @@ dependencies {
     implementation project(':baselibrary')
     //android support
     //    implementation depend.appcompatV7
+    implementation depend.timber
+
     implementation depend.constraintlayout
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:26.1.0'
+    annotationProcessor depend.butterknifeCompiler
+    annotationProcessor depend.daggerCompiler
     //test
     testImplementation depend.junit
     androidTestImplementation depend.runner

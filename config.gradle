@@ -24,6 +24,7 @@ ext {
     glideVersion = '4.5.0'
     retrofitVersion = '2.3.0'
     okhttpVersion = '3.9.1'
+    timberVersion = '4.6.0'
 
     mDependencies = [
             "appcompatV7"          : "com.android.support:appcompat-v7:$supportVersion",
@@ -50,5 +51,6 @@ ext {
             "retrofitConverterGson": "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             "retrofitAdapter"      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             "okhttp"               : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            "timber"               : "com.jakewharton.timber:timber:$timberVersion",
     ]
 }

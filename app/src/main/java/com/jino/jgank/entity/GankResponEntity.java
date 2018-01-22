@@ -136,5 +136,29 @@ public class GankResponEntity {
         public void setImages(List<String> images) {
             this.images = images;
         }
+
+        @Override
+        public String toString() {
+            return "GankItemBean{" +
+                    "_id='" + _id + '\'' +
+                    ", createdAt='" + createdAt + '\'' +
+                    ", desc='" + desc + '\'' +
+                    ", publishedAt='" + publishedAt + '\'' +
+                    ", source='" + source + '\'' +
+                    ", type='" + type + '\'' +
+                    ", url='" + url + '\'' +
+                    ", used=" + used +
+                    ", who='" + who + '\'' +
+                    ", images=" + images +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "GankResponEntity{" +
+                "error=" + error +
+                ", results=" + results +
+                '}';
     }
 }
