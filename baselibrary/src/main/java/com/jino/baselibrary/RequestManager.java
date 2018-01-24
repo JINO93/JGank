@@ -1,9 +1,12 @@
 package com.jino.baselibrary;
 
+import com.jino.baselibrary.di.scope.PreFragment;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import dagger.Lazy;
 import io.rx_cache2.internal.RxCache;
@@ -12,7 +15,7 @@ import retrofit2.Retrofit;
 /**
  * Created by JINO on 2018/1/19.
  */
-
+@Singleton
 public class RequestManager {
 
     private Lazy<Retrofit> retrofitLazy;
@@ -25,7 +28,7 @@ public class RequestManager {
     private Object rxCacheLock = new Object();
 
     @Inject
-    public RequestManager(Lazy<Retrofit> retrofitLazy, Lazy<RxCache> rxCacheLazy) {
+    public RequestManager(Lazy<Retrofit> retrofitLazy,Lazy<RxCache> rxCacheLazy) {
         this.retrofitLazy = retrofitLazy;
         this.rxCacheLazy = rxCacheLazy;
 

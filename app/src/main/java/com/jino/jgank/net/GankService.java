@@ -12,7 +12,7 @@ import retrofit2.http.Path;
  */
 
 public interface GankService {
-    public static final String GANK_BASE_URL = "http://http://gank.io/api";
+    public static final String GANK_BASE_URL = "http://gank.io/api";
 
     public static final String CATEGROY_ALL = "all";
     public static final String CATEGROY_FULI = "福利";

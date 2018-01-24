@@ -1,34 +1,73 @@
 package com.jino.jgank.view.activity;
 
-import android.widget.TextView;
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-import com.jino.baselibrary.RequestManager;
 import com.jino.baselibrary.base.activity.BaseActivity;
 import com.jino.baselibrary.di.component.AppComponent;
-import com.jino.baselibrary.interfaces.IPresenter;
+import com.jino.baselibrary.di.scope.PreActivity;
 import com.jino.jgank.R;
 import com.jino.jgank.di.component.DaggerActivityComponent;
-import com.jino.jgank.entity.GankResponEntity;
-import com.jino.jgank.model.GankCategoryModel;
-import com.jino.jgank.net.GankService;
-
-import javax.inject.Inject;
+import com.jino.jgank.presenter.MainPresenter;
+import com.jino.jgank.view.fragment.GankArticleFragment;
 
 import butterknife.BindView;
-import io.reactivex.observers.DisposableObserver;
-import io.rx_cache2.Reply;
-import timber.log.Timber;
 
-public class MainActivity extends BaseActivity<MainActivity.MyPresenter> {
+@PreActivity
+public class MainActivity extends BaseActivity<MainPresenter> implements
+        NavigationView.OnNavigationItemSelectedListener {
 
-    @Inject
-    public GankCategoryModel model;
+    @BindView(R.id.lay_dawer)
+    public DrawerLayout mDrawer;
+    @BindView(R.id.toolbar)
+    public Toolbar mToolBar;
+    @BindView(R.id.view_navigation)
+    public NavigationView mNavigation;
+    private ActionBarDrawerToggle mDrawerToggle;
 
-    @Inject
-    public RequestManager manager;
+    @Override
+    public int layoutId() {
+        return R.layout.activity_main;
+    }
 
-    @BindView(R.id.tv_show)
-    public TextView mTvShow;
+    @Override
+    public void injectComponent(AppComponent component) {
+        DaggerActivityComponent.builder()
+                .appComponent(component).build()
+                .inject(this);
+    }
+
+
+    @Override
+    public void initView() {
+        setupToolBar(mToolBar);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.lay_container, new GankArticleFragment()).commit();
+        mDrawerToggle = new ActionBarDrawerToggle(this,
+                mDrawer, mToolBar, R.string.drawer_open, R.string.drawer_close);
+        mDrawer.addDrawerListener(mDrawerToggle);
+
+        mNavigation.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
     @Override
     public void onLoading() {
@@ -45,83 +84,10 @@ public class MainActivity extends BaseActivity<MainActivity.MyPresenter> {
 
     }
 
-    @Override
-    public void injectComponent(AppComponent component) {
-        DaggerActivityComponent.builder()
-                .appComponent(component).build()
-                .inject(this);
-    }
 
     @Override
-    public int layoutId() {
-        return R.layout.activity_main;
-    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Timber.tag("JINO");
-        Timber.d("enter initView");
-        model.execute(new DisposableObserver<Reply<GankResponEntity>>() {
-            @Override
-            public void onNext(Reply<GankResponEntity> gankResponEntityReply) {
-                Timber.d("get response");
-                mTvShow.setText(gankResponEntityReply.getData().toString());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        }, new GankCategoryModel.PARAMS(GankService.CATEGROY_ALL, 20, 1));
-    }
-
-    @Override
-    public void initView() {
-
-    }
-
-
-    public class MyPresenter implements IPresenter {
-
-        @Override
-        public void onAttach() {
-
-        }
-
-        @Override
-        public void onCreate() {
-
-        }
-
-        @Override
-        public void onResume() {
-
-        }
-
-        @Override
-        public void onPause() {
-
-        }
-
-        @Override
-        public void onStop() {
-
-        }
-
-        @Override
-        public void onDetach() {
-
-        }
-
-        @Override
-        public void onDestroy() {
-
-        }
+        return false;
     }
 }

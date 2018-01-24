@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group >
+        <item
+            android:id="@+id/action_article"
+            android:icon="@drawable/ic_action_article"
+            android:title="技术干货" />
+    </group>
+    <group >
+        <item
+            android:id="@+id/action_about"
+            android:title="关于" />
+    </group>
+</menu>

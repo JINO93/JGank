@@ -2,6 +2,8 @@ package com.jino.baselibrary.di.module;
 
 import android.app.Application;
 
+import com.jino.baselibrary.RequestManager;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -24,4 +26,11 @@ public class ApplicationModule {
     public Application provideApplication() {
         return mApplication;
     }
+
+
+//    @Singleton
+//    @Provides
+//    public RequestManager provideRequestManager(RequestManager requestManager) {
+//        return requestManager;
+//    }
 }

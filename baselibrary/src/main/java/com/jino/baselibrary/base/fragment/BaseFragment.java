@@ -1,6 +1,7 @@
 package com.jino.baselibrary.base.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,10 +22,12 @@ import me.yokeyword.fragmentation.SupportFragment;
 public abstract class BaseFragment extends SupportFragment implements IFragment {
 
     private Unbinder unBinder;
+    protected Context mContext;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        mContext = activity.getApplication();
     }
 
     @Nullable

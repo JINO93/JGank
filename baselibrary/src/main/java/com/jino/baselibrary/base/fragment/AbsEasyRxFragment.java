@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.jino.baselibrary.interfaces.IPresenter;
+import com.jino.baselibrary.base.IApplication;
+import com.jino.baselibrary.di.component.AppComponent;
+import com.jino.baselibrary.presenter.IPresenter;
 
 import javax.inject.Inject;
 
@@ -19,42 +21,21 @@ public abstract class AbsEasyRxFragment<P extends IPresenter> extends AbsRxFragm
     protected P mPresenter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (mPresenter != null) {
-            mPresenter.onCreate();
-        }
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (mPresenter != null) {
-            mPresenter.onAttach();
-        }
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         if (mPresenter != null) {
             mPresenter.onResume();
         }
+        inject(((IApplication) mContext).getAppComponent());
     }
+
+    protected abstract void inject(AppComponent appComponent);
 
     @Override
     public void onPause() {
         super.onPause();
         if (mPresenter != null) {
             mPresenter.onPause();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mPresenter != null) {
-            mPresenter.onStop();
         }
     }
 

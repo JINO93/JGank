@@ -27,9 +27,9 @@ public class ActivityModule {
         return mActivity;
     }
 
-    @PreActivity
-    @Provides
-    public GankCategoryModel provideGankModel(RequestManager requestManager){
-        return new GankCategoryModel(requestManager);
-    }
+//    @PreActivity
+//    @Provides
+//    public GankCategoryModel provideGankModel(RequestManager requestManager){
+//        return new GankCategoryModel(requestManager);
+//    }
 }

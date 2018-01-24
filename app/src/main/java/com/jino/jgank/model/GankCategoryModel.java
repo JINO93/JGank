@@ -2,6 +2,7 @@ package com.jino.jgank.model;
 
 import com.jino.baselibrary.RequestManager;
 import com.jino.baselibrary.di.scope.PreActivity;
+import com.jino.baselibrary.di.scope.PreFragment;
 import com.jino.baselibrary.model.BaseModel;
 import com.jino.jgank.entity.GankResponEntity;
 import com.jino.jgank.net.GankService;
@@ -10,12 +11,13 @@ import com.jino.jgank.net.cache.GankCacheService;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.rx_cache2.DynamicKey;
 import io.rx_cache2.Reply;
 
 /**
  * Created by JINO on 2018/1/22.
  */
-@PreActivity
+@PreFragment
 public class GankCategoryModel extends BaseModel<Reply<GankResponEntity>, GankCategoryModel.PARAMS> {
 
     @Inject
@@ -27,7 +29,10 @@ public class GankCategoryModel extends BaseModel<Reply<GankResponEntity>, GankCa
     protected Observable<Reply<GankResponEntity>> buildObservable(PARAMS params) {
         return mRequestManager.getCacheService(GankCacheService.class)
                 .getCategroyData(mRequestManager.getRetrofitService(GankService.class)
-                        .getCategroyData(params.cate, params.num, params.page), null);
+                        .getCategroyData(params.cate, params.num, params.page)
+                ,new DynamicKey(params.cate+"@"+params.page));
+//        return mRequestManager.getRetrofitService(GankService.class)
+//                        .getCategroyData(params.cate, params.num, params.page);
     }
 
     public static class PARAMS {

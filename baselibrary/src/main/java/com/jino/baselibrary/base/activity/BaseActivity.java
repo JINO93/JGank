@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
-import com.jino.baselibrary.interfaces.IPresenter;
+import com.jino.baselibrary.presenter.IPresenter;
 import com.jino.baselibrary.interfaces.IView;
 import com.jino.baselibrary.utils.ConditionUtils;
 

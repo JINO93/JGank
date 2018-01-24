@@ -20,11 +20,12 @@ ext {
     rxcacheJolyglotGsonVersion = '0.0.4'
     rxlifecycleVersion = '2.2.1'
     fragmentationVersion = '1.2.4'
-    daggerVersion = '2.14.1'
+    daggerVersion = '2.12'
     glideVersion = '4.5.0'
     retrofitVersion = '2.3.0'
     okhttpVersion = '3.9.1'
     timberVersion = '4.6.0'
+    stateLayoutVersion = '1.0.4'
 
     mDependencies = [
             "appcompatV7"          : "com.android.support:appcompat-v7:$supportVersion",
@@ -52,5 +53,6 @@ ext {
             "retrofitAdapter"      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             "okhttp"               : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             "timber"               : "com.jakewharton.timber:timber:$timberVersion",
+            "statelayout"          : "com.github.fingdo:stateLayout:$stateLayoutVersion",
     ]
 }

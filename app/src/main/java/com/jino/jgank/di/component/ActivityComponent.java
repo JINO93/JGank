@@ -1,7 +1,5 @@
 package com.jino.jgank.di.component;
 
-import android.app.Activity;
-
 import com.jino.baselibrary.di.component.AppComponent;
 import com.jino.baselibrary.di.scope.PreActivity;
 import com.jino.jgank.di.module.ActivityModule;
@@ -15,5 +13,5 @@ import dagger.Component;
 @PreActivity
 @Component(modules = ActivityModule.class, dependencies = AppComponent.class)
 public interface ActivityComponent {
-    void inject(Activity mainActivity);
+    void inject(MainActivity mainActivity);
 }

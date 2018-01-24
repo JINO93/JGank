@@ -23,31 +23,32 @@ public class LibraryModule {
 
     @Singleton
     @Provides
-    public Retrofit provideRetrofit(OkHttpClient httpClient) {
+    Retrofit provideRetrofit(OkHttpClient httpClient) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://gank.io/api/")
                 .client(httpClient);
         return builder.build();
     }
 
     @Singleton
     @Provides
-    public OkHttpClient provideOkHttpClient() {
+    OkHttpClient provideOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         return builder.build();
     }
 
     @Singleton
     @Provides
-    public RxCache provideRxCache(File cacheDir){
+    RxCache provideRxCache(File cacheDir) {
         RxCache.Builder builder = new RxCache.Builder();
         return builder.persistence(cacheDir, new GsonSpeaker());
     }
 
     @Singleton
     @Provides
-    public File provideCacheDir(Application application){
+    File provideCacheDir(Application application) {
         return application.getCacheDir();
     }
 
