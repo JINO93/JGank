@@ -2,14 +2,15 @@ package com.jino.jgank.presenter;
 
 import com.jino.baselibrary.di.scope.PreFragment;
 import com.jino.baselibrary.presenter.BasePresenter;
+import com.jino.baselibrary.rx.BaseObserver;
 import com.jino.jgank.contract.GankCategroyContract;
 import com.jino.jgank.entity.GankResponEntity;
 import com.jino.jgank.model.GankCategoryModel;
-import com.jino.jgank.net.GankService;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.observers.DisposableObserver;
 import io.rx_cache2.Reply;
 import timber.log.Timber;
 
@@ -18,31 +19,52 @@ import timber.log.Timber;
  */
 
 @PreFragment
-public class GankCategroyPresenter extends BasePresenter<GankCategroyContract.View, GankCategoryModel> {
+public class GankCategroyPresenter extends BasePresenter<GankCategroyContract.View, GankCategoryModel> implements GankCategroyContract.Presenter {
+
+    private int currentPage = 1;
+
+    private static final int ITEM_COUNT = 10;
 
     @Inject
     public GankCategroyPresenter(GankCategoryModel model) {
         mModel = model;
     }
 
-    public void loadData() {
+
+    @Override
+    public void loadData(String cate) {
         Timber.tag("JINO");
-        mModel.execute(new DisposableObserver<Reply<GankResponEntity>>() {
+        currentPage = 1;
+        mModel.execute(new BaseObserver<Reply<GankResponEntity>>(mView) {
             @Override
             public void onNext(Reply<GankResponEntity> gankResponEntityReply) {
-                Timber.d(gankResponEntityReply.toString());
+                show(gankResponEntityReply.getData(), false);
             }
+        }, new GankCategoryModel.PARAMS(cate, ITEM_COUNT, currentPage));
 
-            @Override
-            public void onError(Throwable e) {
-                Timber.e(e);
-            }
-
-            @Override
-            public void onComplete() {
-                Timber.i("request finish.");
-            }
-        }, new GankCategoryModel.PARAMS(GankService.CATEGROY_ALL, 10, 1));
     }
+
+    @Override
+    public void loadMoreData(String cate) {
+        mModel.execute(new BaseObserver<Reply<GankResponEntity>>(mView) {
+            @Override
+            public void onNext(Reply<GankResponEntity> gankResponEntityReply) {
+                show(gankResponEntityReply.getData(), true);
+            }
+        }, new GankCategoryModel.PARAMS(cate, ITEM_COUNT, ++currentPage));
+    }
+
+    private void show(GankResponEntity data, boolean loadMore) {
+        if (data.isError()) {
+            mView.onLoadFailed();
+        }
+        List<GankResponEntity.GankItemBean> results = data.getResults();
+        if (loadMore) {
+            mView.loadMore(results);
+        } else {
+            mView.refresh(results);
+        }
+    }
+
 
 }

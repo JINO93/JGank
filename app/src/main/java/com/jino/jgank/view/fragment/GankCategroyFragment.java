@@ -1,6 +1,7 @@
 package com.jino.jgank.view.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -8,9 +9,13 @@ import com.fingdo.statelayout.StateLayout;
 import com.jino.baselibrary.base.fragment.AbsEasyRxFragment;
 import com.jino.baselibrary.di.component.AppComponent;
 import com.jino.jgank.R;
+import com.jino.jgank.adapter.ArticleItemAdapter;
 import com.jino.jgank.contract.GankCategroyContract;
 import com.jino.jgank.di.component.DaggerFragmentComponent;
+import com.jino.jgank.entity.GankResponEntity;
 import com.jino.jgank.presenter.GankCategroyPresenter;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -23,6 +28,7 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
     public static final String CATEGROY = "cate";
 
     private String mCategroy;
+    private ArticleItemAdapter mAdapter;
 
     @BindView(R.id.lay_state)
     public StateLayout mStateLayout;
@@ -51,7 +57,10 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
 
     @Override
     public void initView(View view) {
-
+        mAdapter = new ArticleItemAdapter(this);
+        mItemList.setLayoutManager(new LinearLayoutManager(getContext()
+                , LinearLayoutManager.VERTICAL, false));
+        mItemList.setAdapter(mAdapter);
     }
 
     @Override
@@ -82,12 +91,13 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
 
 
     @Override
-    public void loadMore() {
-
+    public void loadMore(List<GankResponEntity.GankItemBean> items) {
+        mAdapter.addData(items);
     }
 
     @Override
-    public void refresh() {
-
+    public void refresh(List<GankResponEntity.GankItemBean> items) {
+        mStateLayout.showContentView();
+        mAdapter.setNewData(items);
     }
 }

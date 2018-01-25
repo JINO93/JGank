@@ -26,10 +26,14 @@ ext {
     okhttpVersion = '3.9.1'
     timberVersion = '4.6.0'
     stateLayoutVersion = '1.0.4'
+    vLayoutVersion = '1.2.8@aar'
+    brvahVersion = '2.9.30'
+
 
     mDependencies = [
             "appcompatV7"          : "com.android.support:appcompat-v7:$supportVersion",
             "recyclerview"         : "com.android.support:recyclerview-v7:$supportVersion",
+            "cardview"             : "com.android.support:cardview-v7:$supportVersion",
             "design"               : "com.android.support:design:$supportVersion",
             "constraintlayout"     : "com.android.support.constraint:constraint-layout:$constraintlayoutVersion",
             "junit"                : "junit:junit:$junitVersion",
@@ -54,5 +58,7 @@ ext {
             "okhttp"               : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             "timber"               : "com.jakewharton.timber:timber:$timberVersion",
             "statelayout"          : "com.github.fingdo:stateLayout:$stateLayoutVersion",
+            "vlayout"              : "com.alibaba.android:vlayout:$vLayoutVersion",
+            "brvah"                : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvahVersion",
     ]
 }

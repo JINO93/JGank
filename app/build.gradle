@@ -28,8 +28,14 @@ dependencies {
 
     implementation depend.constraintlayout
     implementation depend.design
+    implementation depend.cardview
     implementation depend.statelayout
+    implementation depend.brvah
+
+    implementation depend.glide
+
 //    implementation 'com.android.support:support-v4:26.1.0'
+    annotationProcessor depend.glideCompiler
     annotationProcessor depend.butterknifeCompiler
     annotationProcessor depend.daggerCompiler
 
