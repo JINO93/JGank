@@ -8,7 +8,7 @@ ext {
             versionName      : "1.0"
     ]
 
-    supportVersion = "26.1.0"
+    supportVersion = "27.0.2"
     constraintlayoutVersion = '1.0.2'
     junitVersion = '4.12'
     runnerVersion = '1.0.1'
@@ -56,6 +56,7 @@ ext {
             "retrofitConverterGson": "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             "retrofitAdapter"      : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             "okhttp"               : "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            "loginterceptor"       : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
             "timber"               : "com.jakewharton.timber:timber:$timberVersion",
             "statelayout"          : "com.github.fingdo:stateLayout:$stateLayoutVersion",
             "vlayout"              : "com.alibaba.android:vlayout:$vLayoutVersion",

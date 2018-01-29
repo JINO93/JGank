@@ -21,12 +21,17 @@ public abstract class AbsEasyRxFragment<P extends IPresenter> extends AbsRxFragm
     protected P mPresenter;
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        inject(((IApplication) mContext).getAppComponent());
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (mPresenter != null) {
             mPresenter.onResume();
         }
-        inject(((IApplication) mContext).getAppComponent());
     }
 
     protected abstract void inject(AppComponent appComponent);

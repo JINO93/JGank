@@ -13,6 +13,8 @@ import com.trello.rxlifecycle2.RxLifecycle;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
@@ -24,6 +26,9 @@ import io.reactivex.subjects.BehaviorSubject;
 public abstract class RxActivity<P extends IPresenter> extends BaseActivity  implements LifecycleProvider<ActivityEvent> {
 
     private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
+
+    @Inject
+    public P mPresenter;
 
     @Override
     @NonNull

@@ -21,7 +21,7 @@ import com.jino.jgank.view.fragment.GankArticleFragment;
 import butterknife.BindView;
 
 @PreActivity
-public class MainActivity extends BaseActivity<MainPresenter> implements
+public class MainActivity extends BaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.lay_dawer)
@@ -55,6 +55,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements
         mDrawer.addDrawerListener(mDrawerToggle);
 
         mNavigation.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void initData() {
+
     }
 
     @Override

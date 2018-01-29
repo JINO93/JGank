@@ -27,7 +27,7 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api depend.appcompatV7
+    implementation depend.appcompatV7
     api depend.butterknife
     api depend.dagger
     annotationProcessor depend.butterknifeCompiler
@@ -44,6 +44,9 @@ dependencies {
     api depend.retrofitConverterGson
     api depend.retrofitAdapter
     api depend.okhttp
+    api depend.loginterceptor
+
+    implementation depend.timber
     //test
     testImplementation depend.junit
     androidTestImplementation depend.runner

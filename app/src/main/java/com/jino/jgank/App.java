@@ -14,5 +14,6 @@ public class App extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
+        Timber.tag("JINO");
     }
 }

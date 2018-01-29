@@ -13,4 +13,6 @@ public interface IActivity {
     int layoutId();
 
     void initView();
+
+    void initData();
 }

@@ -10,9 +10,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jino.jgank.R;
 import com.jino.jgank.entity.GankResponEntity;
+import com.jino.jgank.utils.GlideUtils;
 import com.jino.jgank.utils.TimeUtils;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * Created by JINO on 2018/1/25.
@@ -34,10 +37,10 @@ public class ArticleItemAdapter extends BaseQuickAdapter<GankResponEntity.GankIt
         helper.setText(R.id.tv_time, TimeUtils.convertUTCToStandarTime(item.getPublishedAt()));
         ImageView imageView = (ImageView) helper.getView(R.id.img_content);
         if (item.getImages() == null || item.getImages().size() == 0) {
-            imageView.setVisibility(View.GONE);
+            imageView.setImageResource(R.drawable.ic_android);
             return;
         }
-        Glide.with(mFragment).load(item.getImages().get(0))
-                .into(imageView);
+        Timber.i("img url:%s", item.getImages().get(0));
+        GlideUtils.loadImage(mFragment, imageView, item.getImages().get(0));
     }
 }

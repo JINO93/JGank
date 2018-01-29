@@ -43,6 +43,7 @@ public abstract class BaseFragment extends SupportFragment implements IFragment 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         attachView(view);
+        initData();
         initView(view);
     }
 

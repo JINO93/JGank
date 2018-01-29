@@ -3,6 +3,7 @@ package com.jino.baselibrary.base.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.jino.baselibrary.presenter.IPresenter;
 import com.jino.baselibrary.interfaces.IView;
@@ -19,12 +20,12 @@ import me.yokeyword.fragmentation.SupportActivity;
  * Created by JINO on 2018/1/14.
  */
 
-public abstract class BaseActivity<P extends IPresenter> extends SupportActivity implements IActivity, IView {
+public abstract class BaseActivity extends SupportActivity implements IActivity, IView {
 
     private Unbinder unbinder;
 
-    @Inject
-    protected P mPresenter;
+//    @Inject
+//    protected P mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public abstract class BaseActivity<P extends IPresenter> extends SupportActivity
         ConditionUtils.checkParams(layoutId() >= 0, "please set the correct layout id");
         setContentView(layoutId());
         unbinder = ButterKnife.bind(this);
+        initData();
         initView();
     }
 
@@ -54,5 +56,11 @@ public abstract class BaseActivity<P extends IPresenter> extends SupportActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressedSupport();
+            }
+        });
     }
 }

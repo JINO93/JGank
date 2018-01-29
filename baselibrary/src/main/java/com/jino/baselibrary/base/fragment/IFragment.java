@@ -12,6 +12,8 @@ public interface IFragment {
 
     void initView(View view);
 
+    void initData();
+
     void attachView(View view);
 
 }
