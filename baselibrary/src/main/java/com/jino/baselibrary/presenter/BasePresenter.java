@@ -2,6 +2,7 @@ package com.jino.baselibrary.presenter;
 
 import com.jino.baselibrary.interfaces.IView;
 import com.jino.baselibrary.model.IModel;
+import com.jino.baselibrary.transformer.IEntityTransformer;
 import com.jino.baselibrary.utils.ConditionUtils;
 
 import javax.inject.Inject;
@@ -10,10 +11,11 @@ import javax.inject.Inject;
  * Created by JINO on 2018/1/24.
  */
 
-public abstract class BasePresenter<V extends IView, M extends IModel> implements IPresenter<V> {
+public abstract class BasePresenter<V extends IView, M extends IModel,T extends IEntityTransformer> implements IPresenter<V> {
 
     protected V mView;
     protected M mModel;
+    protected T mTransformer;
 
     @Override
     public void onAttach(V view) {

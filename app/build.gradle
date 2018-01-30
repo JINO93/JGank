@@ -1,15 +1,21 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 def cfg = rootProject.ext.android
 def depend = rootProject.ext.mDependencies
 android {
     compileSdkVersion cfg.compileSdkVersion
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId cfg.applicationId
         minSdkVersion cfg.minSdkVersion
         targetSdkVersion cfg.targetSdkVersion
         versionCode cfg.versionCode
         versionName cfg.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    //greendao配置
+    greendao{
+        schemaVersion 1
     }
     buildTypes {
         release {
@@ -33,7 +39,10 @@ dependencies {
     implementation depend.statelayout
     implementation depend.brvah
 
+    implementation depend.greenDao
     implementation depend.glide
+
+    implementation depend.stetho
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor depend.glideCompiler

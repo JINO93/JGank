@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
@@ -75,6 +78,7 @@ public class WebDetialActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        mToolbar.setTitle(mTitle);
         setupToolBar(mToolbar);
         setupWebView();
 
@@ -142,6 +146,23 @@ public class WebDetialActivity extends BaseActivity {
             mUrl = bundle.getString(PARAMS_URL);
             mTitle = bundle.getString(PARAMS_TITLE);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_web_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_like:
+                break;
+            case R.id.action_share:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

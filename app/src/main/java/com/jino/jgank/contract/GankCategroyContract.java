@@ -2,7 +2,7 @@ package com.jino.jgank.contract;
 
 import com.jino.baselibrary.interfaces.IView;
 import com.jino.baselibrary.presenter.IPresenter;
-import com.jino.jgank.entity.GankResponEntity;
+import com.jino.jgank.model.bean.ArticleItem;
 
 import java.util.List;
 
@@ -11,15 +11,15 @@ import java.util.List;
  */
 
 public interface GankCategroyContract {
-    public interface View extends IView {
-        void loadMore(List<GankResponEntity.GankItemBean> items);
+    interface View extends IView {
+        void loadMore(List<ArticleItem> items);
 
-        void refresh(List<GankResponEntity.GankItemBean> items);
+        void refresh(List<ArticleItem> items);
 
 
     }
 
-    public interface Presenter extends IPresenter<View> {
+    interface Presenter extends IPresenter<View> {
         void loadData(String cate);
 
         void loadMoreData(String cate);

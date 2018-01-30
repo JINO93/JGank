@@ -6,6 +6,8 @@ import com.jino.baselibrary.rx.BaseObserver;
 import com.jino.jgank.contract.GankCategroyContract;
 import com.jino.jgank.entity.GankResponEntity;
 import com.jino.jgank.model.GankCategoryModel;
+import com.jino.jgank.model.bean.ArticleItem;
+import com.jino.jgank.transformer.GankItemTransformer;
 
 import java.util.List;
 
@@ -19,15 +21,16 @@ import timber.log.Timber;
  */
 
 @PreFragment
-public class GankCategroyPresenter extends BasePresenter<GankCategroyContract.View, GankCategoryModel> implements GankCategroyContract.Presenter {
+public class GankCategroyPresenter extends BasePresenter<GankCategroyContract.View, GankCategoryModel, GankItemTransformer> implements GankCategroyContract.Presenter {
 
     private int currentPage = 1;
 
     private static final int ITEM_COUNT = 10;
 
     @Inject
-    public GankCategroyPresenter(GankCategoryModel model) {
+    public GankCategroyPresenter(GankCategoryModel model, GankItemTransformer transformer) {
         mModel = model;
+        mTransformer = transformer;
     }
 
 
@@ -55,10 +58,11 @@ public class GankCategroyPresenter extends BasePresenter<GankCategroyContract.Vi
     }
 
     private void show(GankResponEntity data, boolean loadMore) {
-        if (data.isError()) {
-            mView.onLoadFailed();
-        }
-        List<GankResponEntity.GankItemBean> results = data.getResults();
+//        if (data.isError()) {
+//            mView.onLoadFailed();
+//        }
+        List<ArticleItem> results = (List<ArticleItem>) mTransformer.transform(data.getResults());
+
         if (loadMore) {
             mView.loadMore(results);
         } else {

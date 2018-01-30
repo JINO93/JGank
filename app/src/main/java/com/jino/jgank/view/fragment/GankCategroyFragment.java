@@ -1,12 +1,14 @@
 package com.jino.jgank.view.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fingdo.statelayout.StateLayout;
@@ -16,8 +18,10 @@ import com.jino.baselibrary.utils.ConditionUtils;
 import com.jino.jgank.R;
 import com.jino.jgank.adapter.ArticleItemAdapter;
 import com.jino.jgank.contract.GankCategroyContract;
+import com.jino.jgank.db.ArticleDao;
 import com.jino.jgank.di.component.DaggerFragmentComponent;
 import com.jino.jgank.entity.GankResponEntity;
+import com.jino.jgank.model.bean.ArticleItem;
 import com.jino.jgank.presenter.GankCategroyPresenter;
 import com.jino.jgank.view.activity.WebDetialActivity;
 
@@ -26,10 +30,13 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
+ * 展示Gank分类的Fragment
  * Created by JINO on 2018/1/24.
  */
 
-public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresenter> implements GankCategroyContract.View, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
+public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresenter>
+        implements GankCategroyContract.View, BaseQuickAdapter.RequestLoadMoreListener,
+        BaseQuickAdapter.OnItemClickListener {
 
     public static final String CATEGROY = "cate";
 
@@ -105,14 +112,14 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
 
 
     @Override
-    public void loadMore(List<GankResponEntity.GankItemBean> items) {
+    public void loadMore(List<ArticleItem> items) {
         mAdapter.addData(items);
         mAdapter.loadMoreComplete();
         mStateLayout.showContentView();
     }
 
     @Override
-    public void refresh(List<GankResponEntity.GankItemBean> items) {
+    public void refresh(List<ArticleItem> items) {
         mStateLayout.showContentView();
         mAdapter.setNewData(items);
     }
@@ -124,8 +131,11 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        GankResponEntity.GankItemBean itemData = (GankResponEntity.GankItemBean) adapter
+        ArticleItem itemData = (ArticleItem) adapter
                 .getData().get(position);
+        itemData.setType(ArticleItem.TYPE_HISTORY);
+        ArticleDao.addArticle(itemData, ArticleItem.TYPE_HISTORY);
+        ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.GRAY);
         Intent intent = new Intent(getActivity(), WebDetialActivity.class);
         Bundle bundle = new Bundle();
         bundle.putCharSequence(WebDetialActivity.PARAMS_URL, itemData.getUrl());

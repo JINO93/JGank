@@ -28,6 +28,8 @@ ext {
     stateLayoutVersion = '1.0.4'
     vLayoutVersion = '1.2.8@aar'
     brvahVersion = '2.9.30'
+    greenDaoVersion = '3.2.2'
+    stethoVersion = '1.5.0'
 
 
     mDependencies = [
@@ -61,5 +63,7 @@ ext {
             "statelayout"          : "com.github.fingdo:stateLayout:$stateLayoutVersion",
             "vlayout"              : "com.alibaba.android:vlayout:$vLayoutVersion",
             "brvah"                : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvahVersion",
+            "greenDao"             : "org.greenrobot:greendao:$greenDaoVersion",
+            "stetho"               : "com.facebook.stetho:stetho:$stethoVersion",
     ]
 }

@@ -17,6 +17,7 @@ public interface GankService {
     public static final String CATEGROY_ALL = "all";
     public static final String CATEGROY_FULI = "福利";
     public static final String CATEGROY_ANDROID = "Android";
+    public static final String CATEGROY_IOS = "iOS";
     public static final String CATEGROY_VIDEO = "休息视频";
     public static final String CATEGROY_EXT = "拓展资源";
     public static final String CATEGROY_WEB = "前端";
