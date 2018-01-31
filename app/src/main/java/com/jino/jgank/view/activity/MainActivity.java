@@ -48,8 +48,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void initView() {
         setupToolBar(mToolBar);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.lay_container, new GankArticleFragment()).commit();
+        loadRootFragment(R.id.lay_container,new GankArticleFragment());
         mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawer, mToolBar, R.string.drawer_open, R.string.drawer_close);
         mDrawer.addDrawerListener(mDrawerToggle);
@@ -92,7 +91,16 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        switch (item.getItemId()){
+            case R.id.action_article:
+                break;
+            case R.id.action_like:
+                break;
+            case R.id.action_history:
+                break;
+            case R.id.action_setting:
+                break;
+        }
         return false;
     }
 }

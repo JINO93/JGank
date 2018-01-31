@@ -24,11 +24,16 @@ import android.widget.ProgressBar;
 import com.jino.baselibrary.base.activity.BaseActivity;
 import com.jino.baselibrary.di.component.AppComponent;
 import com.jino.jgank.R;
+import com.jino.jgank.db.ArticleDao;
+import com.jino.jgank.model.bean.ArticleItem;
+
+import java.io.Serializable;
 
 import butterknife.BindView;
 
 public class WebDetialActivity extends BaseActivity {
 
+    public static final String PARAMS_DATA = "data";
     public static final String PARAMS_URL = "url";
     public static final String PARAMS_TITLE = "title";
 
@@ -49,6 +54,9 @@ public class WebDetialActivity extends BaseActivity {
 
     private String mUrl;
     private String mTitle;
+    private boolean checked;
+    private ArticleItem itemData;
+    private boolean liked;
 
 
     @Override
@@ -78,11 +86,11 @@ public class WebDetialActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        mToolbar.setTitle(mTitle);
+        mToolbar.setTitle(itemData.getDesc());
         setupToolBar(mToolbar);
         setupWebView();
 
-        mWebview.loadUrl(mUrl);
+        mWebview.loadUrl(itemData.getUrl());
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -143,14 +151,18 @@ public class WebDetialActivity extends BaseActivity {
     public void initData() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            mUrl = bundle.getString(PARAMS_URL);
-            mTitle = bundle.getString(PARAMS_TITLE);
+//            mUrl = bundle.getString(PARAMS_URL);
+//            mTitle = bundle.getString(PARAMS_TITLE);
+            itemData = (ArticleItem) bundle.getSerializable(PARAMS_DATA);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_web_detail, menu);
+        liked = ArticleDao.get(itemData.getUrl(), ArticleItem.TYPE_LIKE) != null;
+        MenuItem item = menu.findItem(R.id.action_like);
+        item.setIcon(liked ? android.R.drawable.star_big_on : android.R.drawable.star_big_off);
         return true;
     }
 
@@ -158,11 +170,27 @@ public class WebDetialActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_like:
+                liked = !liked;
+                item.setIcon(liked ? android.R.drawable.star_big_on : android.R.drawable.star_big_off);
+                refreshLikeState(liked);
                 break;
             case R.id.action_share:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void refreshLikeState(boolean liked) {
+        if (liked) {
+            ArticleDao.addArticle(itemData, ArticleItem.TYPE_LIKE);
+        } else {
+            ArticleItem item = ArticleDao.get(itemData.getUrl());
+            if (item == null) {
+                return;
+            }
+            item.setType(item.getType() & ArticleItem.TYPE_HISTORY);
+            ArticleDao.addArticle(item);
+        }
     }
 
     @Override
@@ -185,6 +213,6 @@ public class WebDetialActivity extends BaseActivity {
             mWebview.destroy();
             mWebview = null;
         }
-        System.exit(0);
+//        System.exit(0);
     }
 }

@@ -24,8 +24,11 @@
         <activity
             android:name=".view.activity.WebDetialActivity"
             android:label="@string/title_activity_web_detial"
-            android:process=":webview"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.activity.HistoryActivity"
+            android:label="@string/title_activity_history"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

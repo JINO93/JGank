@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     //greendao配置
-    greendao{
+    greendao {
         schemaVersion 1
     }
     buildTypes {

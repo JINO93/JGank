@@ -138,8 +138,9 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
         ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.GRAY);
         Intent intent = new Intent(getActivity(), WebDetialActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putCharSequence(WebDetialActivity.PARAMS_URL, itemData.getUrl());
-        bundle.putCharSequence(WebDetialActivity.PARAMS_TITLE, itemData.getDesc());
+        bundle.putSerializable(WebDetialActivity.PARAMS_DATA,itemData);
+//        bundle.putCharSequence(WebDetialActivity.PARAMS_URL, itemData.getUrl());
+//        bundle.putCharSequence(WebDetialActivity.PARAMS_TITLE, itemData.getDesc());
         intent.putExtras(bundle);
         startActivity(intent);
     }

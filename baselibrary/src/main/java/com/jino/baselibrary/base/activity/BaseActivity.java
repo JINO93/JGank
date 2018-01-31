@@ -1,5 +1,6 @@
 package com.jino.baselibrary.base.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -62,5 +63,9 @@ public abstract class BaseActivity extends SupportActivity implements IActivity,
                 onBackPressedSupport();
             }
         });
+    }
+
+    protected void startActivity(Class activity) {
+        startActivity(new Intent(this, activity));
     }
 }

@@ -5,13 +5,15 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
 
+import java.io.Serializable;
+
 /**
  * Created by JINO on 2018/1/30.
  */
 @Entity
-public class ArticleItem {
+public class ArticleItem implements Serializable{
 
-
+    static final long serialVersionUID = 0l;
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_LIKE = 0x1;
     public static final int TYPE_HISTORY = 0x2;

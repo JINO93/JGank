@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_like"
         android:checkable="true"
-        android:icon="@android:drawable/btn_star_big_off"
+        android:icon="@drawable/selector_action_like"
         android:title="收藏"
         app:showAsAction="always" />
 </menu>

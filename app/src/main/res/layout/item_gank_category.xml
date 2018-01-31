@@ -30,6 +30,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
+            android:textColor="@android:color/black"
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
