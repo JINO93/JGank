@@ -70,7 +70,7 @@ public class ArticleDao {
     public static List<ArticleItem> getAll(int type) {
         return DBHelper.getArticleDao().queryBuilder()
                 .where(ArticleItemDao.Properties.Type.eq(type))
-                .list();
+                .list() ;
     }
 
     public static void deleteAll(int type) {

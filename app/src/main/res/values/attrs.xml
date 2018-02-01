@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ChangeableTextView">
+        <attr name="left_icon" format="reference" />
+        <attr name="rigth_icon" format="reference" />
+        <attr name="text_value" format="reference" />
+        <attr name="text_color" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_category">
+        <item>根据日期排列</item>
+        <item>根据类型排列</item>
+
+    </string-array>
+</resources>

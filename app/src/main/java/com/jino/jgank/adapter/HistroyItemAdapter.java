@@ -1,46 +1,47 @@
 package com.jino.jgank.adapter;
 
-import android.graphics.Color;
-import android.support.v4.app.Fragment;
+import android.app.Activity;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jino.jgank.R;
-import com.jino.jgank.db.ArticleDao;
 import com.jino.jgank.model.bean.ArticleItem;
 import com.jino.jgank.utils.GlideUtils;
+import com.jino.jgank.adapter.callback.DeleteItemCallBack;
+
+import java.util.List;
 
 import timber.log.Timber;
 
 /**
- * Created by JINO on 2018/1/25.
+ * Created by JINO on 2018/2/1.
  */
 
-public class ArticleItemAdapter extends BaseQuickAdapter<ArticleItem, BaseViewHolder> {
+public class HistroyItemAdapter extends BaseQuickAdapter<ArticleItem, BaseViewHolder> {
 
-    private Fragment mFragment;
+    private Activity mContext;
 
-    public ArticleItemAdapter(Fragment fragment) {
-        super(R.layout.item_gank_category);
-        mFragment = fragment;
+    public HistroyItemAdapter(Activity context, @Nullable List<ArticleItem> data) {
+        super(R.layout.item_history, data);
+        mContext = context;
     }
 
     @Override
     protected void convert(BaseViewHolder helper, ArticleItem item) {
         helper.setText(R.id.tv_title, item.getDesc());
-        if (ArticleDao.get(item.getUrl()) != null) {
-            helper.setTextColor(R.id.tv_title, Color.GRAY);
-        }
-        helper.setText(R.id.tv_time, item.getAuthor());
         helper.setText(R.id.tv_time, item.getPublishTime());
-        ImageView imageView = (ImageView) helper.getView(R.id.img_content);
+        helper.setText(R.id.tv_cate, item.getCategory());
+        ImageView imageView = (ImageView) helper.getView(R.id.img_preview);
         if (TextUtils.isEmpty(item.getImg())) {
             imageView.setImageResource(R.drawable.ic_android);
             return;
         }
         Timber.i("img url:%s", item.getImg());
-        GlideUtils.loadImage(mFragment, imageView, item.getImg());
+        GlideUtils.loadImage(mContext, imageView, item.getImg());
     }
+
 }

@@ -8,16 +8,24 @@
     tools:context="com.jino.jgank.view.activity.HistoryActivity"
     tools:showIn="@layout/activity_history">
 
-    <Button
+    <!--<Button-->
+        <!--android:id="@+id/btn_sort"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="?android:attr/actionBarSize"-->
+        <!--android:gravity="center"-->
+        <!--android:text="根据分类排列"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/btn_clear"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <com.jino.jgank.view.widget.ChangeableTextView
         android:id="@+id/btn_sort"
         android:layout_width="0dp"
+        app:text_value="@array/sort_category"
         android:layout_height="?android:attr/actionBarSize"
-        android:gravity="center"
-        android:text="根据分类排列"
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageButton
         android:id="@+id/btn_clear"

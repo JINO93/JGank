@@ -1,5 +1,6 @@
 package com.jino.jgank.utils;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
@@ -18,6 +19,7 @@ public class GlideUtils {
 
 
     public static void loadImage(Fragment context, ImageView view, String url, int placeholderPic, int errorPic) {
+
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
@@ -32,6 +34,25 @@ public class GlideUtils {
 
 
     public static void loadImage(Fragment context, ImageView view, String url) {
+        loadImage(context, view, url, R.drawable.ic_android, R.drawable.ic_error);
+    }
+
+    public static void loadImage(Activity context, ImageView view, String url, int placeholderPic, int errorPic) {
+
+        RequestOptions options = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .centerCrop()
+                .placeholder(placeholderPic)
+                .error(errorPic);
+        Glide.with(context)
+                .load(url)
+                .apply(options)
+                .transition(DrawableTransitionOptions.withCrossFade(800))
+                .into(view);
+    }
+
+
+    public static void loadImage(Activity context, ImageView view, String url) {
         loadImage(context, view, url, R.drawable.ic_android, R.drawable.ic_error);
     }
 }
