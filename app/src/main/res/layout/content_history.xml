@@ -8,24 +8,18 @@
     tools:context="com.jino.jgank.view.activity.HistoryActivity"
     tools:showIn="@layout/activity_history">
 
-    <!--<Button-->
-        <!--android:id="@+id/btn_sort"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="?android:attr/actionBarSize"-->
-        <!--android:gravity="center"-->
-        <!--android:text="根据分类排列"-->
-        <!--app:layout_constraintEnd_toStartOf="@+id/btn_clear"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
     <com.jino.jgank.view.widget.ChangeableTextView
         android:id="@+id/btn_sort"
         android:layout_width="0dp"
-        app:text_value="@array/sort_category"
         android:layout_height="?android:attr/actionBarSize"
+        android:background="@drawable/bg_changeable_textview"
+        android:padding="2dp"
         app:layout_constraintEnd_toStartOf="@+id/btn_clear"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:left_icon="@drawable/selector_btn_left"
+        app:rigth_icon="@drawable/selector_btn_right"
+        app:text_value="@array/sort_category" />
 
     <ImageButton
         android:id="@+id/btn_clear"
@@ -41,8 +35,8 @@
         android:id="@+id/rv_history"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_sort" />
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.jino.jgank.view.activity;
 
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,10 @@ import java.util.List;
 import butterknife.BindView;
 
 public class HistoryActivity extends BaseActivity {
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     @BindView(R.id.toolbar)
     public Toolbar mToolbar;
