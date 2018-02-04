@@ -17,6 +17,7 @@ public class ArticleItem implements Serializable{
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_LIKE = 0x1;
     public static final int TYPE_HISTORY = 0x2;
+    public static final int TYPE_BOTH = 0x3;
 
 //    @Id(autoincrement = true)
 //    private long id;

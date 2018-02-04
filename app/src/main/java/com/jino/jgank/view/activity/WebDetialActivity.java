@@ -2,20 +2,16 @@ package com.jino.jgank.view.activity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -24,10 +20,8 @@ import android.widget.ProgressBar;
 import com.jino.baselibrary.base.activity.BaseActivity;
 import com.jino.baselibrary.di.component.AppComponent;
 import com.jino.jgank.R;
-import com.jino.jgank.db.ArticleDao;
+import com.jino.jgank.db.DBManager;
 import com.jino.jgank.model.bean.ArticleItem;
-
-import java.io.Serializable;
 
 import butterknife.BindView;
 
@@ -160,7 +154,7 @@ public class WebDetialActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_web_detail, menu);
-        liked = ArticleDao.get(itemData.getUrl(), ArticleItem.TYPE_LIKE) != null;
+        liked = DBManager.getInstance().exist(itemData, ArticleItem.TYPE_LIKE);
         MenuItem item = menu.findItem(R.id.action_like);
         item.setIcon(liked ? android.R.drawable.star_big_on : android.R.drawable.star_big_off);
         return true;
@@ -181,15 +175,16 @@ public class WebDetialActivity extends BaseActivity {
     }
 
     private void refreshLikeState(boolean liked) {
-        if (liked) {
-            ArticleDao.addArticle(itemData, ArticleItem.TYPE_LIKE);
+        ArticleItem articleItem = DBManager.getInstance().get(itemData.getUrl());
+        if (articleItem == null && liked) {
+            itemData.setType(ArticleItem.TYPE_LIKE);
+            DBManager.getInstance().insertArticleItem(itemData);
+        } else if (liked) {
+            articleItem.setType(articleItem.getType() | ArticleItem.TYPE_LIKE);
+            DBManager.getInstance().updataArticleItem(articleItem);
         } else {
-            ArticleItem item = ArticleDao.get(itemData.getUrl());
-            if (item == null) {
-                return;
-            }
-            item.setType(item.getType() & ArticleItem.TYPE_HISTORY);
-            ArticleDao.addArticle(item);
+            articleItem.setType(articleItem.getType() ^ ArticleItem.TYPE_LIKE);
+            DBManager.getInstance().updataArticleItem(articleItem);
         }
     }
 

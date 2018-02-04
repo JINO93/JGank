@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jino.jgank.R;
-import com.jino.jgank.db.ArticleDao;
+import com.jino.jgank.db.DBManager;
 import com.jino.jgank.model.bean.ArticleItem;
 import com.jino.jgank.utils.GlideUtils;
 
@@ -30,7 +30,7 @@ public class ArticleItemAdapter extends BaseQuickAdapter<ArticleItem, BaseViewHo
     @Override
     protected void convert(BaseViewHolder helper, ArticleItem item) {
         helper.setText(R.id.tv_title, item.getDesc());
-        if (ArticleDao.get(item.getUrl()) != null) {
+        if (DBManager.getInstance().exist(item, ArticleItem.TYPE_HISTORY)) {
             helper.setTextColor(R.id.tv_title, Color.GRAY);
         }
         helper.setText(R.id.tv_time, item.getAuthor());

@@ -27,8 +27,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.HistoryActivity"
-            android:label="@string/title_activity_history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_history" />
     </application>
 
 </manifest>

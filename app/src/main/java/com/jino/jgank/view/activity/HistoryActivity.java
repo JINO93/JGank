@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.jino.baselibrary.base.activity.BaseActivity;
@@ -13,7 +12,7 @@ import com.jino.baselibrary.di.component.AppComponent;
 import com.jino.jgank.R;
 import com.jino.jgank.adapter.HistroyItemAdapter;
 import com.jino.jgank.adapter.callback.DeleteItemCallBack;
-import com.jino.jgank.db.ArticleDao;
+import com.jino.jgank.db.DBManager;
 import com.jino.jgank.di.component.DaggerActivityComponent;
 import com.jino.jgank.model.bean.ArticleItem;
 import com.jino.jgank.view.widget.ChangeableTextView;
@@ -81,6 +80,6 @@ public class HistoryActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        historyItem = ArticleDao.getAll(ArticleItem.TYPE_HISTORY);
+        historyItem = DBManager.getInstance().getAll(ArticleItem.TYPE_HISTORY);
     }
 }

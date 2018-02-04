@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jino.jgank.R;
-import com.jino.jgank.db.ArticleDao;
+import com.jino.jgank.db.DBManager;
 import com.jino.jgank.model.bean.ArticleItem;
 
 import java.util.List;
@@ -44,12 +44,7 @@ public class DeleteItemCallBack extends ItemTouchHelper.Callback {
         int pos = viewHolder.getAdapterPosition();
         ArticleItem removeItem = mData.remove(pos);
         //更新数据库
-        if (removeItem.getType() != ArticleItem.TYPE_HISTORY) {
-            removeItem.setType(ArticleItem.TYPE_LIKE);
-            ArticleDao.addArticle(removeItem);
-        } else {
-            ArticleDao.removeArticle(removeItem);
-        }
+        DBManager.getInstance().deleteArticleItem(ArticleItem.TYPE_HISTORY, removeItem);
         mAdapter.notifyItemRemoved(pos);
     }
 

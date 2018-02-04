@@ -18,9 +18,8 @@ import com.jino.baselibrary.utils.ConditionUtils;
 import com.jino.jgank.R;
 import com.jino.jgank.adapter.ArticleItemAdapter;
 import com.jino.jgank.contract.GankCategroyContract;
-import com.jino.jgank.db.ArticleDao;
+import com.jino.jgank.db.DBManager;
 import com.jino.jgank.di.component.DaggerFragmentComponent;
-import com.jino.jgank.entity.GankResponEntity;
 import com.jino.jgank.model.bean.ArticleItem;
 import com.jino.jgank.presenter.GankCategroyPresenter;
 import com.jino.jgank.view.activity.WebDetialActivity;
@@ -133,12 +132,14 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         ArticleItem itemData = (ArticleItem) adapter
                 .getData().get(position);
-        itemData.setType(ArticleItem.TYPE_HISTORY);
-        ArticleDao.addArticle(itemData, ArticleItem.TYPE_HISTORY);
+        if (!DBManager.getInstance().exist(itemData, ArticleItem.TYPE_HISTORY)) {
+            itemData.setType(ArticleItem.TYPE_HISTORY);
+            DBManager.getInstance().insertArticleItem(itemData);
+        }
         ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.GRAY);
         Intent intent = new Intent(getActivity(), WebDetialActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable(WebDetialActivity.PARAMS_DATA,itemData);
+        bundle.putSerializable(WebDetialActivity.PARAMS_DATA, itemData);
 //        bundle.putCharSequence(WebDetialActivity.PARAMS_URL, itemData.getUrl());
 //        bundle.putCharSequence(WebDetialActivity.PARAMS_TITLE, itemData.getDesc());
         intent.putExtras(bundle);
