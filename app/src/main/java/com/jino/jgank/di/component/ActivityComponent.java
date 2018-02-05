@@ -5,6 +5,7 @@ import com.jino.baselibrary.di.scope.PreActivity;
 import com.jino.jgank.di.module.ActivityModule;
 import com.jino.jgank.view.activity.HistoryActivity;
 import com.jino.jgank.view.activity.MainActivity;
+import com.jino.jgank.view.activity.SearchActivity;
 
 import dagger.Component;
 
@@ -17,4 +18,6 @@ public interface ActivityComponent {
     void inject(MainActivity mainActivity);
 
     void inject(HistoryActivity historyActivity);
+
+    void inject(SearchActivity searchActivity);
 }

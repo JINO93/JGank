@@ -132,9 +132,13 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         ArticleItem itemData = (ArticleItem) adapter
                 .getData().get(position);
-        if (!DBManager.getInstance().exist(itemData, ArticleItem.TYPE_HISTORY)) {
+        ArticleItem itemInDB = DBManager.getInstance().get(itemData.getUrl());
+        if (itemInDB == null) {
             itemData.setType(ArticleItem.TYPE_HISTORY);
             DBManager.getInstance().insertArticleItem(itemData);
+        } else if ((itemInDB.getType() & ArticleItem.TYPE_HISTORY) != ArticleItem.TYPE_HISTORY) {
+            itemInDB.setType(itemInDB.getType() | ArticleItem.TYPE_HISTORY);
+            DBManager.getInstance().updataArticleItem(itemInDB);
         }
         ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.GRAY);
         Intent intent = new Intent(getActivity(), WebDetialActivity.class);

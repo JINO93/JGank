@@ -33,4 +33,19 @@ public class TimeUtils {
             return "";
         }
     }
+
+    public static String convertSearchItemDateToStandarTime(String date) {
+        if (null == date || date == "") {
+            return "";
+        }
+        SimpleDateFormat UTC_Format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
+        try {
+            Date transformDate = UTC_Format.parse(date+ " UTC");
+            SimpleDateFormat GST_Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return GST_Format.format(transformDate);
+        } catch (ParseException e) {
+            Timber.e(e);
+            return "";
+        }
+    }
 }

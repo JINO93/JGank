@@ -28,6 +28,7 @@
         <activity
             android:name=".view.activity.HistoryActivity"
             android:label="@string/title_activity_history" />
+        <activity android:name=".view.activity.SearchActivity"></activity>
     </application>
 
 </manifest>

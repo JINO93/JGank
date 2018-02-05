@@ -15,4 +15,11 @@ public class TimeUtilsTest {
         assertEquals("2018-01-16 16:40:08", res);
     }
 
+    @Test
+    public void converSearchDateToStandarTime() {
+        String res = TimeUtils.convertSearchItemDateToStandarTime("2017-03-14T13:17:14.021000");
+        System.out.println(res);
+        assertEquals("2017-03-14 13:17:35", res);
+    }
+
 }

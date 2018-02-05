@@ -2,6 +2,7 @@ package com.jino.jgank.net;
 
 
 import com.jino.jgank.entity.GankResponEntity;
+import com.jino.jgank.entity.GankSearchEntity;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -33,4 +34,15 @@ public interface GankService {
     @GET(GANK_BASE_URL + "/data/{cate}/{num}/{page}")
     Observable<GankResponEntity> getCategroyData(@Path("cate") String cate,
                                                  @Path("num") int num, @Path("page") int page);
+
+    /**
+     * 搜索API
+     * @param keyword 关键字
+     * @param num 个数
+     * @param page 页数
+     * @return
+     */
+    @GET(GANK_BASE_URL+"/search/query/{keyword}/category/all/count/{num}/page/{page}")
+    Observable<GankSearchEntity> search(@Path("keyword")String keyword, @Path("num")int num
+            , @Path("page")int page);
 }
