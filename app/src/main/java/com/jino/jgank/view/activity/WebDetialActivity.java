@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -19,17 +20,28 @@ import android.widget.ProgressBar;
 
 import com.jino.baselibrary.base.activity.BaseActivity;
 import com.jino.baselibrary.di.component.AppComponent;
+import com.jino.baselibrary.utils.SnackbarUtils;
 import com.jino.jgank.R;
 import com.jino.jgank.db.DBManager;
 import com.jino.jgank.model.bean.ArticleItem;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class WebDetialActivity extends BaseActivity {
 
     public static final String PARAMS_DATA = "data";
     public static final String PARAMS_URL = "url";
     public static final String PARAMS_TITLE = "title";
+
+    private static final String URL_PREFIX = "http://resource";
 
     @BindView(R.id.web_lay_container)
     public ViewGroup mContainer;
@@ -118,6 +130,17 @@ public class WebDetialActivity extends BaseActivity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 mProgressBar.setVisibility(View.VISIBLE);
+                String js = "javascript:window.onload=function() { " +
+                        "    css = document.createElement('link');" +
+//                            "    css.id = 'xxx_browser_2014';" +
+                        "    css.rel = 'stylesheet';  " +
+                        "css.type='text/css';" +
+                        "css.href='" +loadCss()+"';"+
+//                        "css.href='" + URL_PREFIX + "dark.css';" +
+//                        "console.log(css.href);" +
+                        " document.getElementsByTagName('head')[0].appendChild(css); " +
+                        "}";
+                view.loadUrl(js);
             }
 
             @Override
@@ -125,6 +148,8 @@ public class WebDetialActivity extends BaseActivity {
                 super.onPageFinished(view, url);
                 mProgressBar.setVisibility(View.GONE);
             }
+
+
         });
 
         WebSettings settings = mWebview.getSettings();
@@ -139,6 +164,30 @@ public class WebDetialActivity extends BaseActivity {
         settings.setUseWideViewPort(true);
         settings.setSupportZoom(true);
 
+    }
+
+    private String loadCss() {
+        StringBuilder stringBuilder = new StringBuilder();
+        InputStream inputStream = null;
+        try {
+            inputStream = getAssets().open("dark.css");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return stringBuilder.toString();
     }
 
     @Override
@@ -175,6 +224,7 @@ public class WebDetialActivity extends BaseActivity {
     }
 
     private void refreshLikeState(boolean liked) {
+        SnackbarUtils.showContent(mContainer, liked ? "收藏成功" : "取消收藏");
         ArticleItem articleItem = DBManager.getInstance().get(itemData.getUrl());
         if (articleItem == null && liked) {
             itemData.setType(ArticleItem.TYPE_LIKE);

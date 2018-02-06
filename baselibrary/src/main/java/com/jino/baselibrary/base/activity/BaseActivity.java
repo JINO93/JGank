@@ -68,4 +68,10 @@ public abstract class BaseActivity extends SupportActivity implements IActivity,
     protected void startActivity(Class activity) {
         startActivity(new Intent(this, activity));
     }
+
+    protected void startActivity(Class activity, Bundle bundle) {
+        Intent intent = new Intent(this, activity);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }

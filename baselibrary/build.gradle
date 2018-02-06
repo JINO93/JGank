@@ -28,6 +28,7 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation depend.appcompatV7
+    implementation depend.design
     api depend.butterknife
     api depend.dagger
     annotationProcessor depend.butterknifeCompiler
