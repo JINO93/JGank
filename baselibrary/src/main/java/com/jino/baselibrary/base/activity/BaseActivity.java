@@ -3,6 +3,8 @@ package com.jino.baselibrary.base.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -66,7 +68,7 @@ public abstract class BaseActivity extends SupportActivity implements IActivity,
     }
 
     protected void startActivity(Class activity) {
-        startActivity(new Intent(this, activity));
+        startActivity(new Intent(this, activity), ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle());
     }
 
     protected void startActivity(Class activity, Bundle bundle) {

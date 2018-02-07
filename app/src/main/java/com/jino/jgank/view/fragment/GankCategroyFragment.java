@@ -3,6 +3,8 @@ package com.jino.jgank.view.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -147,6 +149,9 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
 //        bundle.putCharSequence(WebDetialActivity.PARAMS_URL, itemData.getUrl());
 //        bundle.putCharSequence(WebDetialActivity.PARAMS_TITLE, itemData.getDesc());
         intent.putExtras(bundle);
-        startActivity(intent);
+        ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), view, getResources().getString(R.string.share_item));
+        ActivityCompat.startActivity(getContext(),intent,compat.toBundle());
     }
+
+
 }

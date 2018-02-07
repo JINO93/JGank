@@ -7,9 +7,11 @@
     android:layout_marginBottom="4dp"
     android:background="@drawable/touch_bg"
     android:clickable="true"
+    android:transitionName="@string/share_item"
     android:focusable="true"
     app:cardCornerRadius="4dp"
-    app:cardElevation="6dp">
+    app:cardElevation="6dp"
+    tools:targetApi="lollipop">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -60,7 +62,7 @@
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"

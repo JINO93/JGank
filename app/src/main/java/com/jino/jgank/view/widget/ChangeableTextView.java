@@ -101,11 +101,6 @@ public class ChangeableTextView extends LinearLayout implements View.OnClickList
                 measureWidth, widthMode, measureHeight, heightMode);
     }
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-        Timber.d("children count:%d", getChildCount());
-    }
 
 
     public void setContentValue(String[] value) {
