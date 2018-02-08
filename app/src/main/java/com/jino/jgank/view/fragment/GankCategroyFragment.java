@@ -3,6 +3,7 @@ package com.jino.jgank.view.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.DividerItemDecoration;
@@ -67,6 +68,7 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
     public void initView(View view) {
         mAdapter = new ArticleItemAdapter(this);
         mAdapter.setOnLoadMoreListener(this, mItemList);
+        mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mAdapter.setOnItemClickListener(this);
         mItemList.setLayoutManager(new LinearLayoutManager(getContext()
                 , LinearLayoutManager.VERTICAL, false));
@@ -137,9 +139,11 @@ public class GankCategroyFragment extends AbsEasyRxFragment<GankCategroyPresente
         ArticleItem itemInDB = DBManager.getInstance().get(itemData.getUrl());
         if (itemInDB == null) {
             itemData.setType(ArticleItem.TYPE_HISTORY);
+            itemData.setLastTime(System.currentTimeMillis());
             DBManager.getInstance().insertArticleItem(itemData);
         } else if ((itemInDB.getType() & ArticleItem.TYPE_HISTORY) != ArticleItem.TYPE_HISTORY) {
             itemInDB.setType(itemInDB.getType() | ArticleItem.TYPE_HISTORY);
+            itemInDB.setLastTime(System.currentTimeMillis());
             DBManager.getInstance().updataArticleItem(itemInDB);
         }
         ((TextView) view.findViewById(R.id.tv_title)).setTextColor(Color.GRAY);

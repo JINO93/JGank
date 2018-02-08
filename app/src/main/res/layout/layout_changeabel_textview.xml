@@ -2,21 +2,23 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    >
+    android:background="@color/colorAccent">
 
     <ImageView
+        android:layout_marginLeft="6dp"
         android:id="@+id/img_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:gravity="center" />
 
     <ImageView
+        android:layout_marginRight="6dp"
         android:id="@+id/img_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

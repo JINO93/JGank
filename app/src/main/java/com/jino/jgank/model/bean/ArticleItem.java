@@ -30,10 +30,11 @@ public class ArticleItem implements Serializable{
     private String author;
     private String desc;
     private String category;
+    private long lastTime;
 
-    @Generated(hash = 1755646041)
+    @Generated(hash = 1477065200)
     public ArticleItem(String publishTime, int type, String url, String img,
-            String author, String desc, String category) {
+            String author, String desc, String category, long lastTime) {
         this.publishTime = publishTime;
         this.type = type;
         this.url = url;
@@ -41,6 +42,7 @@ public class ArticleItem implements Serializable{
         this.author = author;
         this.desc = desc;
         this.category = category;
+        this.lastTime = lastTime;
     }
 
     @Generated(hash = 1068397934)
@@ -115,5 +117,13 @@ public class ArticleItem implements Serializable{
                 ", desc='" + desc + '\'' +
                 ", category='" + category + '\'' +
                 '}';
+    }
+
+    public long getLastTime() {
+        return this.lastTime;
+    }
+
+    public void setLastTime(long lastTime) {
+        this.lastTime = lastTime;
     }
 }

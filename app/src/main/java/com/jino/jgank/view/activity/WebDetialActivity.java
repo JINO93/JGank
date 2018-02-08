@@ -49,7 +49,7 @@ public class WebDetialActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     public Toolbar mToolbar;
 
-    //    @BindView(R.id.webview)
+        @BindView(R.id.webview)
     public WebView mWebview;
 
     @BindView(R.id.pb_web)
@@ -95,21 +95,21 @@ public class WebDetialActivity extends BaseActivity {
         mToolbar.setTitle(itemData.getDesc());
         setupToolBar(mToolbar);
         setupWebView();
-
         mWebview.loadUrl(itemData.getUrl());
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private void setupWebView() {
-        mWebview = new WebView(getApplicationContext());
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        mContainer.addView(mWebview, layoutParams);
+//        mWebview = new WebView(getApplicationContext());
+//        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//        mContainer.addView(mWebview, layoutParams);
 
         mWebview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
                 mProgressBar.setProgress(newProgress);
+                Timber.tag("JINO").d("current progress:%d",newProgress);
             }
         });
 
@@ -142,6 +142,7 @@ public class WebDetialActivity extends BaseActivity {
                         "}";
                 view.loadUrl(js);
             }
+
 
             @Override
             public void onPageFinished(WebView view, String url) {

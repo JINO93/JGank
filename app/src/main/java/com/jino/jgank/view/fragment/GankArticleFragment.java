@@ -26,7 +26,7 @@ public class GankArticleFragment extends BaseFragment {
     @BindView(R.id.viewpager_gank)
     public ViewPager mViewPager;
 
-    private List<String> mTitle = Arrays.asList("Android", "iOS", "前端", "拓展资源");
+    private List<String> mTitle = Arrays.asList("Android", "iOS", "前端", "拓展资源","瞎推荐");
     private List<Fragment> mFragments;
 
     @Override
@@ -51,6 +51,7 @@ public class GankArticleFragment extends BaseFragment {
         mFragments.add(GankCategroyFragment.newInstance(GankService.CATEGROY_IOS));
         mFragments.add(GankCategroyFragment.newInstance(GankService.CATEGROY_WEB));
         mFragments.add(GankCategroyFragment.newInstance(GankService.CATEGROY_EXT));
+        mFragments.add(GankCategroyFragment.newInstance(GankService.CATEGROY_RANDOM));
     }
 
     @Override

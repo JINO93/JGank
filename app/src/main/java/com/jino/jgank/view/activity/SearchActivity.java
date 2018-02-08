@@ -77,6 +77,7 @@ public class SearchActivity extends RxActivity<SearchPresenter> implements Searc
         setupToolBar(mToolbar);
 
         adapter = new SearchResultAdapter(mResultList);
+        adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mListSearch.setAdapter(adapter);
         mListSearch.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mListSearch.setLayoutManager(new LinearLayoutManager(this,

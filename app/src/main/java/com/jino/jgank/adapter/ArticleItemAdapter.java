@@ -35,7 +35,7 @@ public class ArticleItemAdapter extends BaseQuickAdapter<ArticleItem, BaseViewHo
         }
         helper.setText(R.id.tv_time, item.getAuthor());
         helper.setText(R.id.tv_time, item.getPublishTime());
-        ImageView imageView = (ImageView) helper.getView(R.id.img_content);
+        ImageView imageView = helper.getView(R.id.img_content);
         if (TextUtils.isEmpty(item.getImg())) {
             imageView.setImageResource(R.drawable.ic_android);
             return;

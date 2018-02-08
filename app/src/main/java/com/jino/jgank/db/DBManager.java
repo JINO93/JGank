@@ -7,6 +7,8 @@ import com.jino.jgank.model.bean.ArticleItemDao;
 import com.jino.jgank.model.bean.DaoMaster;
 import com.jino.jgank.model.bean.DaoSession;
 
+import org.greenrobot.greendao.Property;
+
 import java.util.List;
 
 import timber.log.Timber;
@@ -46,13 +48,13 @@ public class DBManager {
         return INSTANCE;
     }
 
-    public ArticleItem get(String url){
+    public ArticleItem get(String url) {
         return articleItemDao.load(url);
     }
 
     public boolean exist(ArticleItem articleItem, int type) {
         ArticleItem load = get(articleItem.getUrl());
-        if(load == null)return false;
+        if (load == null) return false;
         return (load.getType() & type) == type;
     }
 
@@ -69,6 +71,16 @@ public class DBManager {
                 .where(ArticleItemDao.Properties.Type.in(type, ArticleItem.TYPE_BOTH))
                 .offset(count * page)
                 .limit(count)
+                .build()
+                .list();
+    }
+
+    public List<ArticleItem> getAll(int type, int page, int count, Property property) {
+        return articleItemDao.queryBuilder()
+                .where(ArticleItemDao.Properties.Type.in(type, ArticleItem.TYPE_BOTH))
+                .offset(count * (page - 1))
+                .limit(count)
+                .orderDesc(property)
                 .build()
                 .list();
     }

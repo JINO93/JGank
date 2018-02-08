@@ -75,33 +75,12 @@ public class ChangeableTextView extends LinearLayout implements View.OnClickList
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
-        switch (heightMode) {
-            case MeasureSpec.AT_MOST:
-                break;
-            case MeasureSpec.EXACTLY:
-                btnLeft.measure(heightMeasureSpec, heightMeasureSpec);
-                btnRight.measure(heightMeasureSpec, heightMeasureSpec);
-                break;
-        }
-        switch (widthMode) {
-            case MeasureSpec.AT_MOST:
-                break;
-            case MeasureSpec.EXACTLY:
-                int contentWidth = measureWidth - 2 * btnLeft.getMeasuredWidth();
-                tvContent.measure(MeasureSpec.makeMeasureSpec(contentWidth, MeasureSpec.EXACTLY), heightMeasureSpec);
-                break;
-        }
-        Timber.d("width:%d--mode:%d,height:%d--mode:%d",
-                measureWidth, widthMode, measureHeight, heightMode);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        LayoutParams params = new LayoutParams(h - 10, h - 10);
+        btnLeft.setLayoutParams(params);
+        btnRight.setLayoutParams(params);
     }
-
-
 
     public void setContentValue(String[] value) {
         mValues = value;
@@ -137,7 +116,7 @@ public class ChangeableTextView extends LinearLayout implements View.OnClickList
         mListener = listener;
     }
 
-    interface OnTextContentChangeListener {
+    public interface OnTextContentChangeListener {
         void onContentChange(String content);
     }
 

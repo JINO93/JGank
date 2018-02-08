@@ -14,10 +14,11 @@
     <ProgressBar
         android:id="@+id/pb_web"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_height="2dp" />
 
-    <!--<WebView-->
-    <!--android:id="@+id/webview"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent" />-->
+    <WebView
+    android:id="@+id/webview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 </FrameLayout>
