@@ -27,7 +27,7 @@ public class DBManager {
     private final ArticleItemDao articleItemDao;
 
     private DBManager(Context context) {
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
+        MySQLOpenHelper helper = new MySQLOpenHelper(context, DB_NAME, null);
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDb());
         session = daoMaster.newSession();
         articleItemDao = session.getArticleItemDao();

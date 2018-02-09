@@ -30,6 +30,7 @@ ext {
     brvahVersion = '2.9.30'
     greenDaoVersion = '3.2.2'
     stethoVersion = '1.5.0'
+    greenDaoHelperVersion = 'v2.0.2'
 
 
     mDependencies = [
@@ -64,6 +65,7 @@ ext {
             "vlayout"              : "com.alibaba.android:vlayout:$vLayoutVersion",
             "brvah"                : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$brvahVersion",
             "greenDao"             : "org.greenrobot:greendao:$greenDaoVersion",
+            "greenDaoHelper"       : "com.github.yuweiguocn:GreenDaoUpgradeHelper:$greenDaoHelperVersion",
             "stetho"               : "com.facebook.stetho:stetho:$stethoVersion",
     ]
 }
